@@ -1,12 +1,59 @@
-<html>
+<!DOCTYPE html>
+<html lang="sl">
 <head>
-<meta http-equiv="Content-Type"
-content="text/html; charset=iso-8859-2">
-<meta name="Autor" content="">
-<meta name="GENERATOR" content="Notepad">
-<title>SG116</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video z zvokom na klik</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+        }
+    </style>
 </head>
-<body bgcolor="#C0C0C0" text="#800000" link="#FFFF00" vlink="#00FF00" alink="#FF0000">
-<p>�<a href="http://www2.arnes.si/~sscrnomelj/astro/">goto Aldebaran</a></p>
+<body>
+
+    <div class="video-container">
+        <!-- Odstranili smo 'autoplay' in 'muted', dodali pa 'id' za JavaScript -->
+        <video id="Inspiro Teaser.mp4" playsinline controls>
+            <source src="inspiro_teaser_01.mp4" type="video/mp4">
+            Vaš brskalnik ne pomo podpira predvajanja videa.
+        </video>
+    </div>
+
+    <script>
+        // Ta koda poskrbi, da se video z zvokom zažene takoj, ko uporabnik klikne kamorkoli na stran
+        document.addEventListener('click', function() {
+            var video = document.getElementById('mojVideo');
+            
+            // Preverimo, če se video že predvaja, če se ne, ga zaženemo
+            if (video.paused) {
+                video.play().catch(function(error) {
+                    console.log("Predvajanje je bilo blokirano s strani brskalnika:", error);
+                });
+            }
+        }, { once: true }); // { once: true } zagotovi, da se ta dogodek sproži samo ob prvem kliku
+    </script>
+
 </body>
 </html>
